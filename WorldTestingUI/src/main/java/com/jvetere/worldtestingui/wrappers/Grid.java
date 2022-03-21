@@ -19,4 +19,7 @@ public class Grid extends Group {
             }
         }
     }
+    public void update() {
+        world.update();
+    }
 }

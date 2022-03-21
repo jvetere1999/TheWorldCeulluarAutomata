@@ -6,4 +6,5 @@ module com.jvetere.worldlogic {
     exports com.jvetere.worldlogic.classes.kingdoms;
     exports com.jvetere.worldlogic.classes.earth;
     exports com.jvetere.worldlogic.classes.plants;
+    exports com.jvetere.worldlogic.types;
 }

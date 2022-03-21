@@ -12,8 +12,11 @@ public class NodeElement extends StackPane {
         node = _node;
         // create rectangle
         Rectangle rectangle = new Rectangle( _width, _height);
-        rectangle.setStroke(Color.BLACK);
-        rectangle.setFill(Color.LIGHTBLUE);
+
+        switch (node.getColor()) {
+            case GREEN -> rectangle.setStroke(Color.GREEN);
+            case BROWN -> rectangle.setStroke(Color.BROWN);
+        }
 
         // create label
         Label label = new Label( _name);

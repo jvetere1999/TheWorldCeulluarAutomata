@@ -2,6 +2,7 @@ package com.jvetere.worldlogic.classes.kingdoms;
 
 
 import com.jvetere.worldlogic.main.GLOBAL;
+import com.jvetere.worldlogic.types.Color;
 import com.jvetere.worldlogic.types.Kingdom;
 import com.jvetere.worldlogic.types.Update;
 
@@ -36,7 +37,7 @@ public abstract class Node {
 
     public abstract void update(Update action, Node node);
 
-    //public abstract Rectangle asFX();
+    public abstract Color getColor();
 
     @Override
     public abstract boolean equals(Object o);

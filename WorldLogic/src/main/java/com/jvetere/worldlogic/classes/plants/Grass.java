@@ -5,6 +5,7 @@ import com.jvetere.worldlogic.classes.earth.Dirt;
 import com.jvetere.worldlogic.classes.kingdoms.Earth;
 import com.jvetere.worldlogic.classes.kingdoms.Node;
 import com.jvetere.worldlogic.classes.kingdoms.Plant;
+import com.jvetere.worldlogic.types.Color;
 import com.jvetere.worldlogic.types.PlantType;
 import com.jvetere.worldlogic.types.Update;
 
@@ -36,6 +37,12 @@ public class Grass extends Plant {
                 break;
         }
     }
+
+    @Override
+    public Color getColor() {
+        return Color.GREEN;
+    }
+
     void expand(Node node) {
         switch (node.kingdom) {
             case EARTH:
