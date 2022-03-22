@@ -7,14 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WorldLogic" />
-        <module name="WorldTestingUI" />
-        <module name="TheWorldCeulluarAutomata" />
+        <module name="WorldGUI" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="WorldGridTest" target="17" />
+      <module name="WorldTestingUI" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="WorldLogic" options="-parameters" />
+      <module name="WorldLogic" options="" />
     </option>
   </component>
 </project>
