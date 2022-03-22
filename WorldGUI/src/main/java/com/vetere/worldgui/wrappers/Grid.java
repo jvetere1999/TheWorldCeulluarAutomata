@@ -21,6 +21,7 @@ public class Grid extends Group {
         }
     }
     public void update() {
+        System.out.println("Here");
         ground.update();
     }
 }

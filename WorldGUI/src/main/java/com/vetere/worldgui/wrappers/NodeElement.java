@@ -19,7 +19,7 @@ public class NodeElement extends StackPane {
 
         switch (node.getColor()) {
             case GREEN -> rectangle.setFill(Color.GREEN);
-            case  BROWN -> rectangle.setFill(Color.BROWN);
+            case  BROWN -> rectangle.setFill(Color.SANDYBROWN);
         }
         Label label = new Label(node.label);
 

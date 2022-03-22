@@ -14,19 +14,9 @@ public class Grass extends Plant {
         super(PlantType.GRASS, x, y);
         label = "Grass";
     }
-
+//Todo
     @Override
     public void update(Update action) {
-        switch (action) {
-            case PASS:
-                break;
-            case EXPAND:
-                System.out.println("No target");
-        }
-    }
-
-    @Override
-    public void update(Update action, Node node) {
         switch (action) {
             case PASS:
                 break;
@@ -38,6 +28,7 @@ public class Grass extends Plant {
                 break;
         }
     }
+
 
     @Override
     public Colors getColor() {

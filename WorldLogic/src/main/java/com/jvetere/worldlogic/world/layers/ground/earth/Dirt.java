@@ -19,10 +19,6 @@ public class Dirt extends Earth {
 
     }
 
-    @Override
-    public void update(Update action, Node node) {
-
-    }
 
     @Override
     public Colors getColor() {

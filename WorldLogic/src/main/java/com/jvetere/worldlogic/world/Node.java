@@ -27,6 +27,9 @@ public abstract class Node {
         age     = 0;
     }
 
+//TODO Bug test this shit
+//TODO Working on grass dirt interaction
+//TODO Generalize some interactions
 
     public void setNeighbors(Node[][] grid) {
         north = y - 1 > 0                   ? grid[x][y-1] : null;
@@ -36,7 +39,6 @@ public abstract class Node {
     }
     public abstract void update(Update action);
 
-    public abstract void update(Update action, Node node);
 
     public abstract Colors getColor();
 

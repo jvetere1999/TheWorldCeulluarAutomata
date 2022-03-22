@@ -17,10 +17,6 @@ public abstract class Earth extends Node {
     public abstract void update(Update action);
 
     @Override
-    public abstract void update(Update action, Node node);
-
-
-    @Override
     public abstract boolean equals(Object o);
 
     @Override

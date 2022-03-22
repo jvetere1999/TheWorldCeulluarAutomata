@@ -5,8 +5,8 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
@@ -34,6 +34,9 @@ public class Main extends Application {
         BorderPane content = new BorderPane();
         content.setPadding(new Insets(20));
         Button update = new Button("Update World");
+        update.setOnAction( (e) -> {
+            grid.update();
+        });
         update.getStyleClass().setAll("btn", "btn-danger");
         content.setBottom(update);
         content.setCenter(grid);
