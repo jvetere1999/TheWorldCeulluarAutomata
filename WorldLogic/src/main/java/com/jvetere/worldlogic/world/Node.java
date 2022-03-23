@@ -6,6 +6,7 @@ import com.jvetere.worldlogic.types.Colors;
 import com.jvetere.worldlogic.types.attributes.InanimateAttributes;
 import com.jvetere.worldlogic.types.objtypes.Kingdom;
 import com.jvetere.worldlogic.types.Update;
+import com.jvetere.worldlogic.types.objtypes.MasterTypes;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,12 +26,13 @@ public abstract class Node {
             west;
 
     public Set<InanimateAttributes> attributes;
-    public Node(Kingdom _kingdom, int _x, int _y){
+    public MasterTypes type;
+    public Node(Kingdom _kingdom, MasterTypes _type, int _x, int _y){
         attributes  = new HashSet<>();
         kingdom     = _kingdom;
         x           = _x;
         y           = _y;
-
+        type        = _type;
         age         = 0;
     }
 
@@ -58,7 +60,7 @@ public abstract class Node {
     }
     public int rand(int max, int n){
         SplittableRandom splittableRandom = new SplittableRandom();
-        IntStream random = splittableRandom.ints(n, 0, max+1);
+        IntStream random = splittableRandom.ints(n, -1, max);
         return random.min().getAsInt();
     }
 }

@@ -36,7 +36,7 @@ public class Grid extends GridPane {
         }
     }
     public void update() {
-        System.out.println(ground);
+        //System.out.println(ground);
         ground.update(generateUpdate());
         updateVisual();
     }

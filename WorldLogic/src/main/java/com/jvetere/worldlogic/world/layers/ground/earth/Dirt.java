@@ -18,7 +18,7 @@ import static com.jvetere.worldlogic.types.objtypes.EarthType.DIRT;
 public class Dirt extends Earth {
 
     public Dirt(int x, int y) {
-        super(DIRT, x, y);
+        super(MasterTypes.DIRT, x, y);
         label = "Dirt";
         attributes.add(InanimateAttributes.STATIC_STATE);
         attributes.add(InanimateAttributes.DIG_ABLE);
@@ -32,22 +32,22 @@ public class Dirt extends Earth {
                 break;
             case EXPAND:
                 ChangeKnowledge temp;
-                if(north != null && !(north instanceof Grass)) {
+                if(north != null && (north.type != this.type)) {
                     temp = this.expand(north);
                     if(temp != null)
                         change.add(temp);
                 }
-                if(south!=null && !(south instanceof Grass)) {
+                if(south!=null && !(south instanceof Dirt)) {
                     temp = this.expand(south);
                     if(temp != null)
                         change.add(temp);
                 }
-                if(east!=null && !(east instanceof Grass)){
+                if(east!=null && !(east instanceof Dirt)){
                     temp = this.expand(east);
                     if(temp != null)
                         change.add(temp);
                 }
-                if(west!=null&& !(west instanceof Grass)) {
+                if(west!=null&& !(west instanceof Dirt)) {
                     temp = this.expand(west);
                     if(temp != null)
                         change.add(temp);

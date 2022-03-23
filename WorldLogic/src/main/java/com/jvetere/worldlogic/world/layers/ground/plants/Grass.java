@@ -14,10 +14,11 @@ import com.jvetere.worldlogic.types.Update;
 import java.util.ArrayList;
 
 import static com.jvetere.worldlogic.types.attributes.InanimateAttributes.*;
+import static com.jvetere.worldlogic.types.objtypes.MasterTypes.DIRT;
 
 public class Grass extends Plant {
     public Grass(int x, int y) {
-        super(PlantType.GRASS, x, y);
+        super(MasterTypes.GRASS, x, y);
         label = "Grass";
         attributes.add(HOR_EXPAND);
         attributes.add(FLAMMABLE);
@@ -67,7 +68,7 @@ public class Grass extends Plant {
 
     ChangeKnowledge expand(Node node) {
         if(node instanceof Earth)
-            switch (((Earth) node).type){
+            switch (node.type){
                 case DIRT:
                     return this.validExpand(node.x, node.y);
             }

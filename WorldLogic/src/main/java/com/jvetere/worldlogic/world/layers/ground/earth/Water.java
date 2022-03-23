@@ -20,8 +20,7 @@ import static com.jvetere.worldlogic.types.objtypes.EarthType.WATER;
 
 public class Water extends Earth {
     public Water(int x, int y) {
-
-        super(WATER, x, y);
+        super(MasterTypes.WATER, x, y);
         attributes.add(HOR_EXPAND);
     }
 
@@ -32,23 +31,24 @@ public class Water extends Earth {
             case PASS:
                 break;
             case EXPAND:
+                System.out.println("Here");
                 ChangeKnowledge temp;
-                if(north != null && !(north instanceof Grass)) {
+                if(north != null && !(north instanceof Water)) {
                     temp = this.expand(north);
                     if(temp != null)
                         change.add(temp);
                 }
-                if(south!=null && !(south instanceof Grass)) {
+                if(south!=null && !(south instanceof Water)) {
                     temp = this.expand(south);
                     if(temp != null)
                         change.add(temp);
                 }
-                if(east!=null && !(east instanceof Grass)){
+                if(east!=null && !(east instanceof Water)){
                     temp = this.expand(east);
                     if(temp != null)
                         change.add(temp);
                 }
-                if(west!=null&& !(west instanceof Grass)) {
+                if(west!=null&& !(west instanceof Water)) {
                     temp = this.expand(west);
                     if(temp != null)
                         change.add(temp);
@@ -60,6 +60,10 @@ public class Water extends Earth {
         return null;
     }
     ChangeKnowledge expand(Node node) {
+        if(node.type ==  MasterTypes.DIRT){
+            System.out.println("HEree");
+            return new ChangeKnowledge(MasterTypes.WATER, node.x, node.y);
+        }
         return this.validExpand(node.x, node.y, node.age);
     }
     ChangeKnowledge validExpand(int _x, int _y, int _age) {

@@ -14,11 +14,10 @@ import java.util.ArrayList;
 import static com.jvetere.worldlogic.main.GLOBAL.GRASS_DEATH_AGE;
 
 public abstract class Plant extends Node {
-    public PlantType type;
 
-    public Plant(PlantType _type,int _x, int _y) {
-        super(Kingdom.PLANTS, _x, _y);
-        type = _type;
+
+    public Plant(MasterTypes _type, int _x, int _y) {
+        super(Kingdom.PLANTS, _type, _x, _y);
     }
 
 

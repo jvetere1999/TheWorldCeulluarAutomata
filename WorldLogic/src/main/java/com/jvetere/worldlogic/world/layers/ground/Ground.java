@@ -40,16 +40,20 @@ public class Ground {
                 case DIRT -> new Dirt(x, y);
                 case GRASS -> new Grass(x, y);
                 case WATER -> new Water(x, y);
+                default -> throw new IllegalStateException("Unexpected value: " + type);
             };
             y++;
         }
     }
     public void update(ArrayList<Update> updates){
         int index = 0;
+        ArrayList<ChangeKnowledge> changes;
+        changes = new ArrayList<>();
         for (int x = 0; x < GLOBAL.WORLD_ROWS; x++) {
             for (int y = 0; y < WORLD_COLS; y++) {
                 plane[x][y].setNeighbors(plane);
-                ArrayList<ChangeKnowledge> changes = plane[x][y].update(updates.get(index));
+                System.out.println(plane[x][y].type);
+                changes.addAll(plane[x][y].update(updates.get(index)));
                 if(changes!=null)
                     enactChange(changes);
                 plane[x][y].ageUp();
@@ -74,14 +78,21 @@ public class Ground {
         ArrayList<MasterTypes> types;
         types = new ArrayList<>();
         int index = 0;
+        int[] bounds = new int[] {10, 90, 100};
         while (index < WORLD_VOLUME) {
-            int rand = GLOBAL.rand(100, 1);
-            if (rand < 10)
+            int rand = GLOBAL.rand(bounds[2], 1);
+            if (rand < bounds[0]) {
                 types.add(MasterTypes.GRASS);
-            else if (rand < 90)
+                bounds[1] = 70;
+            }
+            else if (rand < bounds[1]) {
                 types.add(MasterTypes.DIRT);
-            else
+                bounds[1] = 90;
+            }
+            else {
                 types.add(MasterTypes.WATER);
+                bounds[1] = 20;
+            }
             index++;
         }
         return types;

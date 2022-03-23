@@ -9,11 +9,11 @@ public class GLOBAL {
     public static final double SCENE_WIDTH = 1024;
     public static final double SCENE_LENGTH = 768;
     public static final int N = 5, M = 5;
-    public static final int PIXEL = 10;
+    public static final int PIXEL = 5;
     public static final double SECONDS_PER_UPDATE = 500;
     //Logic Values
-    public static final int WORLD_ROWS = 50;
-    public static final int WORLD_COLS = 50;
+    public static final int WORLD_ROWS = 100;
+    public static final int WORLD_COLS = 100;
     public static final int WORLD_VOLUME = WORLD_COLS * WORLD_ROWS;
     public static final int GRASS = 2;
     //Random ness
