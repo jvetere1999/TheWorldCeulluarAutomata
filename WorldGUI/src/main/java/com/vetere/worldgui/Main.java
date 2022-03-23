@@ -34,6 +34,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
         primaryStage.show();
+        System.out.println("HereGUI");
     }
 
     Panel boostrapPanel(Grid grid) {

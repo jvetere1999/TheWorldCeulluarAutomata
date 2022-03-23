@@ -36,6 +36,7 @@ public class Ground {
                 y = 0;
                 x++;
             }
+            System.out.println(type);
             plane[x][y] = switch (type) {
                 case DIRT -> new Dirt(x, y);
                 case GRASS -> new Grass(x, y);
