@@ -3,25 +3,36 @@ package com.vetere.worldgui.wrappers;
 
 import com.jvetere.worldlogic.world.layers.ground.Ground;
 import com.vetere.worldgui.GLOBAL;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 
-public class Grid extends Group {
-    public Ground ground = new Ground();
+public class Grid extends GridPane {
+
+    Ground ground = new Ground();
     public Grid() {
-        for( int i=0; i < GLOBAL.N; i++) {
-            for( int j=0; j < GLOBAL.M; j++) {
-
+        setPadding(new Insets(10));
+        setAlignment(Pos.CENTER);
+        updateVisual();
+    }
+    void updateVisual() {
+        getChildren().clear();
+        for( int i = 0; i <GLOBAL.WORLD_ROWS; i++){
+            for( int j = 0; j <GLOBAL.WORLD_COLS; j++){
                 // create node
-                NodeElement node = new NodeElement( i * GLOBAL.GRID_WIDTH, j * GLOBAL.GRID_LENGTH, GLOBAL.GRID_WIDTH, GLOBAL.GRID_LENGTH, ground.plane[i][j]);
-
+                Rectangle rect = new Rectangle(GLOBAL.PIXLE, GLOBAL.PIXLE);
+                rect.setFill(NodeHelper.getColor(ground.plane[i][j]));
                 // add node to group
-                getChildren().add( node);
+                add(rect ,i , j);
 
             }
         }
     }
     public void update() {
-        System.out.println("Here");
+        System.out.println(ground);
         ground.update();
+        updateVisual();
+
     }
 }

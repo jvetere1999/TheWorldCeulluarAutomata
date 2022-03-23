@@ -6,6 +6,7 @@ import com.jvetere.worldlogic.types.Colors;
 import com.jvetere.worldlogic.types.Kingdom;
 import com.jvetere.worldlogic.types.Update;
 
+import java.util.ArrayList;
 import java.util.SplittableRandom;
 import java.util.stream.IntStream;
 
@@ -37,7 +38,7 @@ public abstract class Node {
         east  = x + 1 < GLOBAL.WORLD_ROWS   ? grid[x+1][y] : null;
         west  = x - 1 > 0                   ? grid[x-1][y] : null;
     }
-    public abstract void update(Update action);
+    public abstract ArrayList<ChangeKnowledge> update(Update action);
 
 
     public abstract Colors getColor();
