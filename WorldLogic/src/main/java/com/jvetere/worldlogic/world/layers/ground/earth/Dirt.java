@@ -59,10 +59,15 @@ public class Dirt extends Earth {
         return change;
     }
     ChangeKnowledge expand(Node node) {
-        if(node instanceof Grass)
-            return this.validExpand(node.x, node.y, node.age);
-        else if(node instanceof Dirt)
-            return this.validExpand(node.x, node.y, node.age + 2);
+        switch (node.type) {
+            case GRASS -> {
+                return this.validExpand(node.x, node.y, node.age);
+            }
+            case DIRT -> {
+                return this.validExpand(node.x, node.y, node.age + 2);
+            }
+        }
+
         return null;
     }
     ChangeKnowledge validExpand(int _x, int _y, int _age) {

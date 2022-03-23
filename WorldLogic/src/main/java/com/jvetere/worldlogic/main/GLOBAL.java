@@ -25,7 +25,7 @@ public class GLOBAL {
     //Dirt specific
     public static final int DIRT_AGE_EXPANSION = 5;
     //Water specific
-    public static final int WATER_AGE_EXPANSION = 15;
+    public static final int WATER_AGE_EXPANSION = 1;
     public static final int WATER_DEATH_AGE = 50;
     public static int rand(int max, int n){
         SplittableRandom splittableRandom = new SplittableRandom();

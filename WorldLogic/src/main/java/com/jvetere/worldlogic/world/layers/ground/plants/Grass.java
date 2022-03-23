@@ -67,11 +67,11 @@ public class Grass extends Plant {
     }
 
     ChangeKnowledge expand(Node node) {
-        if(node instanceof Earth)
-            switch (node.type){
-                case DIRT:
-                    return this.validExpand(node.x, node.y);
-            }
+        System.out.println("HEree");
+        switch (node.type){
+            case DIRT:
+                return this.validExpand(node.x, node.y);
+        }
         return null;
     }
     ChangeKnowledge validExpand(int _x, int _y) {

@@ -53,7 +53,7 @@ public class Ground {
             for (int y = 0; y < WORLD_COLS; y++) {
                 plane[x][y].setNeighbors(plane);
                 System.out.println(plane[x][y].type);
-                changes.addAll(plane[x][y].update(updates.get(index)));
+                plane[x][y].update(updates.get(index));
                 if(changes!=null)
                     enactChange(changes);
                 plane[x][y].ageUp();
