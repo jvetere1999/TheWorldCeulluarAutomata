@@ -1,4 +1,4 @@
-package com.jvetere.worldlogic.types;
+package com.jvetere.worldlogic.types.objtypes;
 
 public enum Kingdom {
     EARTH,

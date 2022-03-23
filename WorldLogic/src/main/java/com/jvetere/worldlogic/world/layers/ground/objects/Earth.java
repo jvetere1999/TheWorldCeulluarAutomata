@@ -3,8 +3,8 @@ package com.jvetere.worldlogic.world.layers.ground.objects;
 
 import com.jvetere.worldlogic.world.ChangeKnowledge;
 import com.jvetere.worldlogic.world.Node;
-import com.jvetere.worldlogic.types.EarthType;
-import com.jvetere.worldlogic.types.Kingdom;
+import com.jvetere.worldlogic.types.objtypes.EarthType;
+import com.jvetere.worldlogic.types.objtypes.Kingdom;
 import com.jvetere.worldlogic.types.Update;
 
 import java.util.ArrayList;

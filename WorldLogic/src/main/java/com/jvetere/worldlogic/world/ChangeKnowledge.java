@@ -1,6 +1,6 @@
 package com.jvetere.worldlogic.world;
 
-import com.jvetere.worldlogic.types.MasterTypes;
+import com.jvetere.worldlogic.types.objtypes.MasterTypes;
 
 public class ChangeKnowledge {
 

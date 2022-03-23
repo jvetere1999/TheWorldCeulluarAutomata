@@ -5,4 +5,7 @@ module com.jvetere.worldlogic {
     exports com.jvetere.worldlogic.world.layers.ground.earth;
     exports com.jvetere.worldlogic.world.layers.ground;
     exports com.jvetere.worldlogic.world;
+    exports com.jvetere.worldlogic.main;
+    exports com.jvetere.worldlogic.types.objtypes;
+
 }

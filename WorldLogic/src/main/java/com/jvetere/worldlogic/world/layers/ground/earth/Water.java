@@ -1,29 +1,30 @@
-package com.jvetere.worldlogic.world.layers.ground.plants;
-
+package com.jvetere.worldlogic.world.layers.ground.earth;
 
 import com.jvetere.worldlogic.main.GLOBAL;
 import com.jvetere.worldlogic.types.Colors;
+import com.jvetere.worldlogic.types.Update;
+import com.jvetere.worldlogic.types.objtypes.EarthType;
 import com.jvetere.worldlogic.types.objtypes.MasterTypes;
 import com.jvetere.worldlogic.world.ChangeKnowledge;
-import com.jvetere.worldlogic.world.layers.ground.objects.Plant;
-import com.jvetere.worldlogic.world.layers.ground.objects.Earth;
 import com.jvetere.worldlogic.world.Node;
-import com.jvetere.worldlogic.types.objtypes.PlantType;
-import com.jvetere.worldlogic.types.Update;
+import com.jvetere.worldlogic.world.layers.ground.objects.Earth;
+import com.jvetere.worldlogic.world.layers.ground.plants.Grass;
 
 import java.util.ArrayList;
 
-import static com.jvetere.worldlogic.types.attributes.InanimateAttributes.*;
+import static com.jvetere.worldlogic.main.GLOBAL.GRASS_DEATH_AGE;
+import static com.jvetere.worldlogic.main.GLOBAL.WATER_DEATH_AGE;
+import static com.jvetere.worldlogic.types.attributes.InanimateAttributes.HOR_EXPAND;
+import static com.jvetere.worldlogic.types.attributes.InanimateAttributes.TIME_KILLABLE;
+import static com.jvetere.worldlogic.types.objtypes.EarthType.WATER;
 
-public class Grass extends Plant {
-    public Grass(int x, int y) {
-        super(PlantType.GRASS, x, y);
-        label = "Grass";
+public class Water extends Earth {
+    public Water(int x, int y) {
+
+        super(WATER, x, y);
         attributes.add(HOR_EXPAND);
-        attributes.add(FLAMMABLE);
-        attributes.add(ALIVE);
     }
-//Todo
+
     @Override
     public ArrayList<ChangeKnowledge> update(Update action) {
         ArrayList<ChangeKnowledge> change = new ArrayList<>();
@@ -54,35 +55,32 @@ public class Grass extends Plant {
                 }
                 break;
             case DIE:
-                if (attributes.contains(TIME_KILLABLE))change.add(death());
+                if (attributes.contains(TIME_KILLABLE)) change.add(death());
         }
-        return change;
-    }
-
-
-    @Override
-    public Colors getColor() {
-        return Colors.GREEN;
-    }
-
-    ChangeKnowledge expand(Node node) {
-        if(node instanceof Earth)
-            switch (((Earth) node).type){
-                case DIRT:
-                    return this.validExpand(node.x, node.y);
-            }
         return null;
     }
-    ChangeKnowledge validExpand(int _x, int _y) {
+    ChangeKnowledge expand(Node node) {
+        return this.validExpand(node.x, node.y, node.age);
+    }
+    ChangeKnowledge validExpand(int _x, int _y, int _age) {
         int rand = this.rand((int) Math.abs(GLOBAL.DICE - (this.age * GLOBAL.AGE_MULTIPLAYER)), GLOBAL.GRASS_N_DICE_ROLES);
 
-        if( rand == 0 && age > 2){
-            return new ChangeKnowledge(MasterTypes.GRASS, _x, _y);
+        if( rand == 0 && _age > GLOBAL.WATER_AGE_EXPANSION){
+            return new ChangeKnowledge(MasterTypes.WATER, _x, _y);
         }
         return null;
     }
+    @Override
+    public Colors getColor() {
+        return Colors.BLUE;
+    }
 
-
+    public ChangeKnowledge death() {
+        if ( this.rand(Math.abs(WATER_DEATH_AGE-age), 2) != 0)  {
+            return null;
+        }
+        return new ChangeKnowledge(MasterTypes.DIRT, x, y);
+    }
     @Override
     public boolean equals(Object o) {
         return false;

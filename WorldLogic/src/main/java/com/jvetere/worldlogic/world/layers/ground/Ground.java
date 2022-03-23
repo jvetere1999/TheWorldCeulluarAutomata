@@ -1,34 +1,55 @@
 package com.jvetere.worldlogic.world.layers.ground;
 
 
+import com.jvetere.worldlogic.types.objtypes.MasterTypes;
 import com.jvetere.worldlogic.world.ChangeKnowledge;
 import com.jvetere.worldlogic.world.layers.ground.earth.Dirt;
 import com.jvetere.worldlogic.world.Node;
 import com.jvetere.worldlogic.main.GLOBAL;
 import com.jvetere.worldlogic.types.Update;
+import com.jvetere.worldlogic.world.layers.ground.earth.Water;
 import com.jvetere.worldlogic.world.layers.ground.plants.Grass;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static com.jvetere.worldlogic.main.GLOBAL.WORLD_COLS;
+import static com.jvetere.worldlogic.main.GLOBAL.WORLD_VOLUME;
+
 public class Ground {
 
-    public Node[][] plane = new Node[GLOBAL.WORLD_ROWS][GLOBAL.WORLD_COLS];
+    public Node[][] plane = new Node[GLOBAL.WORLD_ROWS][WORLD_COLS];
 
+//    public Ground() {
+//        for (int x = 0; x < GLOBAL.WORLD_ROWS; x++) {
+//            for (int y = 0; y < WORLD_COLS; y++) {
+//
+//                plane[x][y] = x == GLOBAL.GRASS && y == GLOBAL.GRASS ? new Grass(x, y) : new Dirt(x, y);
+//
+//            }
+//        }
+//    }
     public Ground() {
-        for (int x = 0; x < GLOBAL.WORLD_ROWS; x++) {
-            for (int y = 0; y < GLOBAL.WORLD_COLS; y++) {
-
-                plane[x][y] = x == GLOBAL.GRASS && y == GLOBAL.GRASS ? new Grass(x, y) : new Dirt(x, y);
-
+        int x = 0, y = 0;
+        for(MasterTypes type : generateBase()){
+            if ( y == WORLD_COLS) {
+                y = 0;
+                x++;
             }
+            plane[x][y] = switch (type) {
+                case DIRT -> new Dirt(x, y);
+                case GRASS -> new Grass(x, y);
+                case WATER -> new Water(x, y);
+            };
+            y++;
         }
     }
-    public void update(){
+    public void update(ArrayList<Update> updates){
+        int index = 0;
         for (int x = 0; x < GLOBAL.WORLD_ROWS; x++) {
-            for (int y = 0; y < GLOBAL.WORLD_COLS; y++) {
+            for (int y = 0; y < WORLD_COLS; y++) {
                 plane[x][y].setNeighbors(plane);
-                ArrayList<ChangeKnowledge> changes = plane[x][y].update(Update.EXPAND);
+                ArrayList<ChangeKnowledge> changes = plane[x][y].update(updates.get(index));
                 if(changes!=null)
                     enactChange(changes);
                 plane[x][y].ageUp();
@@ -38,11 +59,32 @@ public class Ground {
 
     public void enactChange(ArrayList<ChangeKnowledge> changeArr){
         for(ChangeKnowledge change : changeArr) {
-            switch (change.newType) {
-                case GRASS -> plane[change.x][change.y] = new Grass(change.x, change.y);
-                case DIRT -> plane[change.x][change.y] = new Dirt(change.x, change.y);
+            if (change != null) {
+                switch (change.newType) {
+                    case GRASS -> plane[change.x][change.y] = new Grass(change.x, change.y);
+                    case DIRT -> plane[change.x][change.y] = new Dirt(change.x, change.y);
+                    case WATER -> plane[change.x][change.y] = new Water(change.x, change.y);
+                }
             }
         }
+    }
+    //TODO: Fluctuating values based on previous node
+    //ie: Water being followed more often by water etc
+    public ArrayList<MasterTypes> generateBase(){
+        ArrayList<MasterTypes> types;
+        types = new ArrayList<>();
+        int index = 0;
+        while (index < WORLD_VOLUME) {
+            int rand = GLOBAL.rand(100, 1);
+            if (rand < 10)
+                types.add(MasterTypes.GRASS);
+            else if (rand < 90)
+                types.add(MasterTypes.DIRT);
+            else
+                types.add(MasterTypes.WATER);
+            index++;
+        }
+        return types;
     }
     @Override
     public String toString() {
@@ -55,6 +97,9 @@ public class Ground {
                 }
                 if (node instanceof Dirt){
                     str += "D";
+                }
+                if (node instanceof Water){
+                    str += "W";
                 }
             }
             str += "\n";
