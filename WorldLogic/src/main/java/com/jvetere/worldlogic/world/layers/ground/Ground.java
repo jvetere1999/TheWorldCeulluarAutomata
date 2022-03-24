@@ -13,8 +13,7 @@ import com.jvetere.worldlogic.world.layers.ground.plants.Grass;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import static com.jvetere.worldlogic.main.GLOBAL.WORLD_COLS;
-import static com.jvetere.worldlogic.main.GLOBAL.WORLD_VOLUME;
+import static com.jvetere.worldlogic.main.GLOBAL.*;
 
 public class Ground {
 
@@ -49,12 +48,10 @@ public class Ground {
     public void update(ArrayList<Update> updates){
         int index = 0;
         ArrayList<ChangeKnowledge> changes;
-        changes = new ArrayList<>();
         for (int x = 0; x < GLOBAL.WORLD_ROWS; x++) {
             for (int y = 0; y < WORLD_COLS; y++) {
                 plane[x][y].setNeighbors(plane);
-                System.out.println(plane[x][y].type);
-                plane[x][y].update(updates.get(index));
+                changes = plane[x][y].update(updates.get(index));
                 if(changes!=null)
                     enactChange(changes);
                 plane[x][y].ageUp();
@@ -101,8 +98,9 @@ public class Ground {
     @Override
     public String toString() {
         String str = "";
-        for(Node[] n:plane){
-            for(Node node:n){
+        for(int i = 0; i<WORLD_ROWS; i++){
+            for(int j = 0; j<WORLD_COLS; j++){
+                Node node = plane[i][j];
                 str +=" ";
                 if (node instanceof Grass){
                     str += "G";

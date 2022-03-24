@@ -31,7 +31,6 @@ public class Water extends Earth {
             case PASS:
                 break;
             case EXPAND:
-                System.out.println("Here");
                 ChangeKnowledge temp;
                 if(north != null && !(north instanceof Water)) {
                     temp = this.expand(north);
@@ -57,14 +56,14 @@ public class Water extends Earth {
             case DIE:
                 if (attributes.contains(TIME_KILLABLE)) change.add(death());
         }
-        return null;
+        return change;
     }
     ChangeKnowledge expand(Node node) {
         if(node.type ==  MasterTypes.DIRT){
-            System.out.println("HEree");
+
             return new ChangeKnowledge(MasterTypes.WATER, node.x, node.y);
         }
-        return this.validExpand(node.x, node.y, node.age);
+        return null;
     }
     ChangeKnowledge validExpand(int _x, int _y, int _age) {
         int rand = this.rand((int) Math.abs(GLOBAL.DICE - (this.age * GLOBAL.AGE_MULTIPLAYER)), GLOBAL.GRASS_N_DICE_ROLES);

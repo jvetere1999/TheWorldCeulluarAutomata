@@ -9,6 +9,7 @@ module com.vetere.worldgui {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.jvetere.worldlogic;
+    requires com.vetere.graphing;
 
     opens com.vetere to javafx.fxml;
     exports com.vetere.worldgui;

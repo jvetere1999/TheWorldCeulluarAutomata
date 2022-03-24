@@ -1,6 +1,7 @@
 package com.vetere.worldgui;
 
 import com.jvetere.worldlogic.main.GLOBAL;
+import com.vetere.worldgui.wrappers.GraphGrid;
 import com.vetere.worldgui.wrappers.Grid;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -27,8 +28,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Grid grid = new Grid();
-        Scene scene = new Scene(boostrapPanel(grid), GLOBAL.SCENE_WIDTH, GLOBAL.SCENE_WIDTH);
+        //Grid grid = new Grid();
+        GraphGrid grid = new GraphGrid("x^2+2x-1");
+        Scene scene = new Scene(grid, GLOBAL.SCENE_WIDTH, GLOBAL.SCENE_WIDTH);
+        grid.update();
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         primaryStage.setTitle("ZA WORLD!");
         primaryStage.setScene(scene);

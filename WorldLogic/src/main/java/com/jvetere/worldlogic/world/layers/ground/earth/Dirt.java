@@ -72,7 +72,6 @@ public class Dirt extends Earth {
     }
     ChangeKnowledge validExpand(int _x, int _y, int _age) {
         int rand = this.rand((int) Math.abs(GLOBAL.DICE - (this.age * GLOBAL.AGE_MULTIPLAYER)), GLOBAL.GRASS_N_DICE_ROLES);
-
         if( rand == 0 && _age > GLOBAL.DIRT_AGE_EXPANSION){
             return new ChangeKnowledge(MasterTypes.DIRT, _x, _y);
         }

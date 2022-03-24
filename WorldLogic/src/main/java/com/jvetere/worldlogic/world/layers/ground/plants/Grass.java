@@ -67,7 +67,7 @@ public class Grass extends Plant {
     }
 
     ChangeKnowledge expand(Node node) {
-        System.out.println("HEree");
+
         switch (node.type){
             case DIRT:
                 return this.validExpand(node.x, node.y);
@@ -78,6 +78,7 @@ public class Grass extends Plant {
         int rand = this.rand((int) Math.abs(GLOBAL.DICE - (this.age * GLOBAL.AGE_MULTIPLAYER)), GLOBAL.GRASS_N_DICE_ROLES);
 
         if( rand == 0 && age > 2){
+            System.out.println("GRASS_EXPAND to "+_x+", "+_y);
             return new ChangeKnowledge(MasterTypes.GRASS, _x, _y);
         }
         return null;

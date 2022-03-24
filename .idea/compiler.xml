@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="WorldLogic" />
         <module name="WorldGUI" />
+        <module name="Graphing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
