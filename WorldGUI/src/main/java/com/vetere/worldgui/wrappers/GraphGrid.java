@@ -1,16 +1,19 @@
 package com.vetere.worldgui.wrappers;
 
 import com.jvetere.worldlogic.main.GLOBAL;
-import com.vetere.graphing.functions.Graph;
+import com.vetere.graphing.Function;
+import com.vetere.graphing.Graph;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.ArrayList;
+
 public class GraphGrid extends GridPane {
     Graph graph;
 
-    public GraphGrid(String _exp) {
-        graph = new Graph(_exp, GLOBAL.WORLD_ROWS, GLOBAL.WORLD_COLS);
+    public GraphGrid(ArrayList<Function> funcs) {
+        graph = new Graph(funcs, GLOBAL.WORLD_ROWS);
     }
     void updateVisual() {
         getChildren().clear();
@@ -18,7 +21,7 @@ public class GraphGrid extends GridPane {
             for( int j = 0; j <GLOBAL.WORLD_COLS; j++){
                 // create node
                 Rectangle rect = new Rectangle(GLOBAL.PIXEL, GLOBAL.PIXEL);
-                if(graph.get(i) == j)
+                if(graph.grid[i][j] != 0)
                     rect.setFill(Color.BLACK);
                 else {
                     rect.setStroke(Color.BLACK);

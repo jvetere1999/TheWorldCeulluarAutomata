@@ -2,6 +2,7 @@ package com.jvetere.worldlogic.main;
 // public static final int
 
 import java.util.SplittableRandom;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class GLOBAL {
@@ -31,5 +32,12 @@ public class GLOBAL {
         SplittableRandom splittableRandom = new SplittableRandom();
         IntStream random = splittableRandom.ints(n, 0, max);
         return random.min().getAsInt();
+    }
+
+    public static boolean isNumeric(String s) {
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        if (s == null)
+            return false;
+        return pattern.matcher(s).matches();
     }
 }

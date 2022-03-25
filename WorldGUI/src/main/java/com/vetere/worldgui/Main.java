@@ -1,6 +1,7 @@
 package com.vetere.worldgui;
 
 import com.jvetere.worldlogic.main.GLOBAL;
+import com.vetere.graphing.Function;
 import com.vetere.worldgui.wrappers.GraphGrid;
 import com.vetere.worldgui.wrappers.Grid;
 import javafx.animation.KeyFrame;
@@ -21,7 +22,7 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 
 public class Main extends Application {
@@ -29,7 +30,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         //Grid grid = new Grid();
-        GraphGrid grid = new GraphGrid("x^2+2x-1");
+        Function stand = new Function("x^2+2x-1");
+        ArrayList<Function> graphFunctions = new ArrayList<>();
+        graphFunctions.add(stand);
+        GraphGrid grid = new GraphGrid(graphFunctions);
         Scene scene = new Scene(grid, GLOBAL.SCENE_WIDTH, GLOBAL.SCENE_WIDTH);
         grid.update();
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
